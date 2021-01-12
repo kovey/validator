@@ -11,7 +11,9 @@
  */
 namespace Kovey\Validator\Rules;
 
-#[\Attribute]
+use Attribute;
+
+#[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_METHOD)]
 class MinLength extends Base 
 {
     protected int $minlength;
