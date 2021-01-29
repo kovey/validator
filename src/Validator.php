@@ -2,7 +2,7 @@
 /**
  * @description Validator
  *
- * @package
+ * @package Kovey\Validator
  *
  * @author kovey
  *
@@ -15,12 +15,34 @@ use Kovey\Validator\Rules\Required;
 
 class Validator
 {
+    /**
+     * @description rules
+     *
+     * @var Array
+     */
     private Array $rules;
 
+    /**
+     * @description error
+     *
+     * @var string
+     */
     private string $error;
 
+    /**
+     * @description data
+     *
+     * @var Array
+     */
     private Array $data;
 
+    /**
+     * @description construct
+     *
+     * @param Array $data
+     *
+     * @return Validator
+     */
     public function __construct(Array $data)
     {
         $this->rules = array();
@@ -28,6 +50,13 @@ class Validator
         $this->data = $data;
     }
 
+    /**
+     * @description add rule
+     *
+     * @param RuleInterface $rule
+     *
+     * @return Validator
+     */
     public function addRule(RuleInterface $rule) : Validator
     {
         $this->rules[$rule->getField()] ??= array();
@@ -35,6 +64,11 @@ class Validator
         return $this;
     }
 
+    /**
+     * @description valid
+     *
+     * @return bool
+     */
     public function valid() : bool
     {
         foreach ($this->rules as $field => $frules) {
@@ -56,6 +90,11 @@ class Validator
         return true;
     }
 
+    /**
+     * @description get error
+     *
+     * @return string
+     */
     public function getError() : string
     {
         return $this->error;

@@ -16,8 +16,22 @@ use Attribute;
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_METHOD)]
 class Gt extends Base 
 {
+    /**
+     * @description min
+     *
+     * @var int | float
+     */
     protected int | float $min;
 
+    /**
+     * @description construct
+     *
+     * @param string $field
+     *
+     * @param int | float $min
+     *
+     * @return Gt
+     */
     public function __construct(string $field, int | float $min)
     {
         parent::__construct($field);
@@ -26,6 +40,13 @@ class Gt extends Base
         $this->min = $min;
     }
 
+    /**
+     * @description valid data
+     *
+     * @param mixed $data
+     *
+     * @return bool
+     */
     public function valid(mixed $data) : bool
     {
         return $data > $this->min;

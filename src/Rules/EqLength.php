@@ -16,8 +16,22 @@ use Attribute;
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_METHOD)]
 class EqLength extends Base 
 {
+    /**
+     * @description length
+     *
+     * @var int
+     */
     protected int $length;
 
+    /**
+     * @description construct
+     *
+     * @param string $field
+     *
+     * @param int $length
+     *
+     * @return EqLength
+     */
     public function __construct(string $field, int $length)
     {
         parent::__construct($field);
@@ -26,6 +40,13 @@ class EqLength extends Base
         $this->length = $length;
     }
 
+    /**
+     * @description valid data
+     *
+     * @param mixed $data
+     *
+     * @return bool
+     */
     public function valid(mixed $data) : bool
     {
         return strlen($data) == $this->length;

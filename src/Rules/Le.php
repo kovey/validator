@@ -16,8 +16,22 @@ use Attribute;
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_METHOD)]
 class Le extends Base 
 {
+    /**
+     * @description max
+     *
+     * @var int | float
+     */
     protected int | float $max;
 
+    /**
+     * @description construct
+     *
+     * @param string $field
+     *
+     * @param int | float $max
+     *
+     * @return Le
+     */
     public function __construct(string $field, int | float $max)
     {
         parent::__construct($field);
@@ -26,6 +40,13 @@ class Le extends Base
         $this->max = $max;
     }
 
+    /**
+     * @description valid data
+     *
+     * @param mixed $data
+     *
+     * @return bool
+     */
     public function valid(mixed $data) : bool
     {
         return $data <= $this->max;

@@ -16,8 +16,22 @@ use Attribute;
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_METHOD)]
 class MaxLength extends Base 
 {
+    /**
+     * @description maxlength
+     *
+     * @var int
+     */
     protected int $maxlength;
 
+    /**
+     * @description construct
+     *
+     * @param string $field
+     *
+     * @param int $length
+     *
+     * @return MaxLength
+     */
     public function __construct(string $field, int $maxlength)
     {
         parent::__construct($field);
@@ -26,6 +40,13 @@ class MaxLength extends Base
         $this->maxlength = $maxlength;
     }
 
+    /**
+     * @description valid data
+     *
+     * @param mixed $data
+     *
+     * @return bool
+     */
     public function valid(mixed $data) : bool
     {
         return strlen($data) <= $this->maxlength;
